@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic
+snowflake-connector-python
+python-dotenv
+fpdf2

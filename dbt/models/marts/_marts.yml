@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: fct_customer_daily_usage
+    description: >
+      Daily usage costs per customer × product. Joins aggregated events
+      with customer dimension and pricing rates.
+    columns:
+      - name: date_id
+        tests: [not_null]
+      - name: customer_sk
+        tests: [not_null]
+      - name: cost_amount
+        tests: [not_null]
+
+  - name: fct_invoices
+    description: >
+      Monthly invoices — one per customer per billing period.
+      Aggregates daily costs into a single subtotal/total.
+    columns:
+      - name: invoice_id
+        tests: [unique, not_null]
+      - name: customer_sk
+        tests: [not_null]
+      - name: total
+        tests: [not_null]
+
+  - name: fct_invoice_line_items
+    description: >
+      Per-product line items for each invoice. Links back to
+      fct_invoices via invoice_id.
+    columns:
+      - name: line_item_id
+        tests: [unique, not_null]
+      - name: invoice_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_invoices')
+              field: invoice_id
+      - name: amount
+        tests: [not_null]

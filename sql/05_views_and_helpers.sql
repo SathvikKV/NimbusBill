@@ -1,0 +1,21 @@
+-- 05_views_and_helpers.sql
+USE SCHEMA NIMBUSBILL.SILVER;
+
+-- Helper View: Parse Usage Events
+-- Helps flatten JSON for the MERGE statement
+CREATE OR REPLACE VIEW V_USAGE_EVENTS_PARSED AS
+SELECT
+    RAW:event_id::STRING AS EVENT_ID,
+    RAW:event_timestamp::TIMESTAMP_NTZ AS EVENT_TS,
+    TO_DATE(RAW:event_timestamp::TIMESTAMP_NTZ) AS EVENT_DATE,
+    RAW:customer_id::STRING AS CUSTOMER_ID,
+    RAW:product_id::STRING AS PRODUCT_ID,
+    RAW:plan_id::STRING AS PLAN_ID,
+    RAW:region::STRING AS REGION,
+    RAW:unit::STRING AS UNIT,
+    RAW:quantity::NUMBER(38,6) AS QUANTITY,
+    SOURCE,
+    BATCH_ID,
+    MD5(RAW) AS RAW_HASH
+FROM NIMBUSBILL.BRONZE.USAGE_EVENTS_RAW
+WHERE RAW:event_id IS NOT NULL;

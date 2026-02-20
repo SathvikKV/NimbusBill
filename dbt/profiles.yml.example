@@ -1,0 +1,16 @@
+# Copy this file to profiles.yml and fill in your Snowflake credentials.
+# Location: ~/.dbt/profiles.yml  OR  dbt/profiles.yml (with --profiles-dir flag)
+
+nimbusbill:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      database: NIMBUSBILL
+      warehouse: COMPUTE_WH
+      schema: PUBLIC
+      threads: 4

@@ -1,0 +1,5 @@
+product_id,product_name,category,description
+prod_api_requests,API Requests,Compute,Standard API calls per request
+prod_storage_gb,Storage GB,Storage,GB of storage per month
+prod_compute_minutes,Compute Minutes,Compute,Active compute time
+prod_ai_tokens,AI Tokens,AI,LLM input/output tokens

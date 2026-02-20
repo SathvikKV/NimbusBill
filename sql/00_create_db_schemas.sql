@@ -1,0 +1,14 @@
+-- 00_create_db_schemas.sql
+CREATE DATABASE IF NOT EXISTS NIMBUSBILL;
+
+USE DATABASE NIMBUSBILL;
+
+CREATE SCHEMA IF NOT EXISTS BRONZE;
+CREATE SCHEMA IF NOT EXISTS SILVER;
+CREATE SCHEMA IF NOT EXISTS GOLD;
+CREATE SCHEMA IF NOT EXISTS OPS;
+
+-- Optional: Create a stage for loading data (Assuming external stage or internal for now)
+-- CREATE OR REPLACE STAGE BRONZE.S3_LANDING_ZONE
+-- URL='s3://your-bucket/nimbus-bill/'
+-- CREDENTIALS=(AWS_KEY_ID='...' AWS_SECRET_KEY='...');

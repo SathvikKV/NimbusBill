@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: NIMBUSBILL
+    schema: BRONZE
+    tables:
+      - name: USAGE_EVENTS_RAW
+        description: Raw JSON usage events ingested from JSONL files
+      - name: CUSTOMERS_RAW
+        description: Raw JSON customer snapshots
+      - name: PRICING_CATALOG_RAW
+        description: Raw pricing catalog entries
+
+models:
+  - name: stg_usage_events
+    description: Parsed and deduplicated usage events from Bronze JSON
+    columns:
+      - name: EVENT_ID
+        description: Unique event identifier (UUID)
+        tests:
+          - unique
+          - not_null
+      - name: CUSTOMER_ID
+        tests: [not_null]
+      - name: PRODUCT_ID
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['prod_api_requests', 'prod_storage_gb', 'prod_compute_minutes', 'prod_ai_tokens']
+      - name: QUANTITY
+        tests: [not_null]
+
+  - name: stg_customers
+    description: Current customer dimension from Bronze JSON snapshots
+    columns:
+      - name: CUSTOMER_ID
+        tests: [unique, not_null]
+      - name: STATUS
+        tests:
+          - accepted_values:
+              values: ['active', 'delinquent', 'cancelled']
+
+  - name: stg_pricing
+    description: Pricing rates from Bronze catalog
+    columns:
+      - name: PRODUCT_ID
+        tests: [not_null]
+      - name: UNIT_PRICE
+        tests: [not_null]

@@ -1,0 +1,5 @@
+plan_id,plan_name,base_fee,currency
+plan_free,Free Tier,0.00,USD
+plan_starter,Starter,29.00,USD
+plan_pro,Professional,99.00,USD
+plan_enterprise,Enterprise,499.00,USD
