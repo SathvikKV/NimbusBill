@@ -16,7 +16,7 @@
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 NimbusBill treats the **Data Warehouse as the billing engine**. Raw usage events flow through a Medallion Architecture (Bronze → Silver → Gold), where pricing is applied, invoices are generated, and late-arriving events trigger automatic reconciliation.
 
@@ -68,7 +68,7 @@ erDiagram
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 NimbusBill/
@@ -100,7 +100,7 @@ NimbusBill/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+ with `pip`
@@ -172,7 +172,7 @@ In Airflow UI → Enable `daily_usage_billing_pipeline` → Click **Trigger DAG*
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 pip install pytest httpx
@@ -199,7 +199,7 @@ Full interactive docs available at `/docs` when the API is running.
 
 ---
 
-## 📝 Documentation
+## Documentation
 
 - [Architecture](docs/architecture.md) — Medallion layers, DAG descriptions
 - [Schema Reference](docs/schema.md) — All table definitions
@@ -209,7 +209,7 @@ Full interactive docs available at `/docs` when the API is running.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
