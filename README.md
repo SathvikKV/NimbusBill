@@ -159,7 +159,7 @@ In Airflow UI → Enable `daily_usage_billing_pipeline` → Click **Trigger DAG*
 
 ---
 
-## ⚙️ Key Engineering Decisions
+## Key Engineering Decisions
 
 | Decision | Rationale |
 |----------|-----------|
@@ -181,7 +181,7 @@ python -m pytest tests/ -v
 
 ---
 
-## 📊 API Endpoints
+## API Endpoints
 
 | Method | Path | Description |
 |--------|------|-------------|
